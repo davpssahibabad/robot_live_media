@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UP Smart Patrol Network</title>
+    <style>
+        body {
+            background: #020817;
+            color: #e5e7eb;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #111827;
+            padding: 14px 20px;
+            text-align: center;
+            border-bottom: 2px solid #1f2937;
+        }
+        h1 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+        main {
+            padding: 24px 20px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        p {
+            font-size: 14px;
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin-top: 20px;
+        }
+        .city-card {
+            background: #111827;
+            border-radius: 10px;
+            padding: 12px 14px;
+            box-shadow: 0 0 0 1px #1f2937;
+        }
+        .city-card h2 {
+            font-size: 16px;
+            margin: 0 0 4px 0;
+        }
+        .city-card p {
+            font-size: 12px;
+            margin: 0 0 8px 0;
+            color: #9ca3af;
+        }
+        .city-link {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #2563eb;
+            color: #e5e7eb;
+            font-size: 12px;
+            text-decoration: none;
+        }
+        .city-link.disabled {
+            background: #374151;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Uttar Pradesh – Patrolling Bot Network</h1>
+</header>
+
+<main>
+    <p>
+        This dashboard shows autonomous patrolling robots deployed across cities in Uttar Pradesh.
+        Each robot uses caterpillar tracks, a Raspberry Pi, camera, motion and thermal sensors, and
+        safety systems to support police and emergency services.
+    </p>
+    <p style="margin-top:8px;">
+        Select a city to view its live feed and robot status. Currently, the system is active in Ghaziabad.
+    </p>
+
+    <div class="city-grid">
+        <div class="city-card">
+            <h2>Ghaziabad</h2>
+            <p>Live video, status, and controls for the Ghaziabad patrolling bot.</p>
+            <a href="{{ url_for('ghaziabad') }}" class="city-link">Open Dashboard</a>
+        </div>
+        <div class="city-card">
+            <h2>Lucknow</h2>
+            <p>Dashboard coming soon.</p>
+            <span class="city-link disabled">Coming Soon</span>
+        </div>
+        <div class="city-card">
+            <h2>Noida</h2>
+            <p>Dashboard coming soon.</p>
+            <span class="city-link disabled">Coming Soon</span>
+        </div>
+        <div class="city-card">
+            <h2>Kanpur</h2>
+            <p>Dashboard coming soon.</p>
+            <span class="city-link disabled">Coming Soon</span>
+        </div>
+        <div class="city-card">
+            <h2>Varanasi</h2>
+            <p>Dashboard coming soon.</p>
+            <span class="city-link disabled">Coming Soon</span>
+        </div>
+    </div>
+</main>
+</body>
+</html>
