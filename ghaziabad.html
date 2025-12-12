@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patrolling Bot – Ghaziabad Live Feed</title>
+    <style>
+        body {
+            background: #020817;
+            color: #e5e7eb;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #111827;
+            padding: 12px 20px;
+            text-align: center;
+            border-bottom: 2px solid #1f2937;
+        }
+        h1 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background: #111827;
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 0 0 1px #1f2937;
+            max-width: 420px;
+            width: 100%;
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .video-container img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #374151;
+        }
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .label {
+            color: #9ca3af;
+        }
+        .value {
+            font-weight: bold;
+            color: #facc15;
+        }
+        .btn {
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+        .btn-on {
+            background: #22c55e;
+            color: #022c22;
+        }
+        .btn-off {
+            background: #ef4444;
+            color: #450a0a;
+        }
+        a.back-link {
+            color: #93c5fd;
+            font-size: 14px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Patrolling Bot – Ghaziabad Live Monitoring</h1>
+</header>
+
+<main>
+    <section class="card">
+        <h2>Live Camera</h2>
+        <div class="video-container">
+            <img src="{{ url_for('video_feed') }}" alt="Live video">
+        </div>
+        <p style="font-size:12px;color:#9ca3af;margin-top:6px;">
+            If video does not load, check that the Pi camera / USB cam is connected and app.py is running.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>Robot Details</h2>
+        <p style="font-size:13px;color:#d1d5db;line-height:1.4;">
+            This autonomous patrolling robot uses caterpillar tracks, a Raspberry Pi 3 Model B, motion and thermal
+            sensors, and an HD camera to monitor streets in Ghaziabad. It can detect movement, unusual heat
+            (possible fire or emergencies), trigger a siren on theft attempts, and notify emergency services
+            through connected systems.
+        </p>
+        <p style="font-size:13px;color:#9ca3af;line-height:1.4;">
+            Key features:
+            <br>• Continuous patrolling with tracked wheels.
+            <br>• Motion (PIR) and thermal sensing for people and fire.
+            <br>• Anti-theft detection with loud siren.
+            <br>• Headlights for night patrol and live video stream to this dashboard.
+        </p>
+
+        <hr style="border-color:#1f2937;margin:10px 0;">
+        <h2>Bot Status</h2>
+        <div class="status-row">
+            <span class="label">Motion detected:</span>
+            <span class="value">{{ 'YES' if motion else 'NO' }}</span>
+        </div>
+        <div class="status-row">
+            <span class="label">Ambient temp:</span>
+            <span class="value">{{ amb_temp }} °C</span>
+        </div>
+        <div class="status-row">
+            <span class="label">Object temp:</span>
+            <span class="value">{{ obj_temp }} °C</span>
+        </div>
+        <hr style="border-color:#1f2937;margin:10px 0;">
+        <h2>Headlight Control</h2>
+        <form method="post">
+            <button class="btn btn-on" name="light_action" value="on">Turn ON</button>
+            <button class="btn btn-off" name="light_action" value="off">Turn OFF</button>
+        </form>
+        <p style="font-size:13px;color:#9ca3af;margin-top:8px;">
+            Current state: {{ 'ON' if headlight_on else 'OFF' }}
+        </p>
+        <p style="margin-top:10px;">
+            <a href="{{ url_for('home') }}" class="back-link">&larr; Back to UP Cities</a>
+        </p>
+    </section>
+</main>
+</body>
+</html>
